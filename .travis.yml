@@ -4,4 +4,8 @@ python:
 before_install:
     - pip install pytest pytest-cov
 script:
-    - pytest
+    - pytest --cov=./
+after_success:
+    - curl -Os https://uploader.codecov.io/latest/linux/codecov
+    - chmod +x codecov
+    - ./codecov -t ${CODECOV_TOKEN}
